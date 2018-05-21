@@ -282,11 +282,11 @@
 				<!-- contact form -->
 				<div class="col-md-8 col-md-offset-2">
 					<form class="contact-form">
-						<input type="text" class="input" placeholder="Name">
-						<input type="email" class="input" placeholder="Email">
-						<input type="text" class="input" placeholder="Subject">
-						<textarea class="input" placeholder="Message"></textarea>
-						<button class="main-btn">Send message</button>
+						<input type="text" class="input" name="name" placeholder="Name">
+						<input type="email" class="input" name="email" placeholder="Email">
+						<input type="text" class="input" name="request" placeholder="Subject">
+						<textarea class="input" name="message" placeholder="Message"></textarea>
+						<button class="main-btn" type="submit"id="submit-form">Send message</button>
 					</form>
 				</div>
 				<!-- /contact form -->
@@ -576,5 +576,22 @@
 	<script type="text/javascript" src="js/main.js"></script>
 
 </body>
+
+<script>
+	var $form = $('form#contact-form'),
+	    url = 'https://script.google.com/macros/s/AKfycbwZEbq5f-1_P8SmsDU3aOWtvqd8Nu5gKzFsQDu9rn7RpPe1xicf/exec'
+
+	$('#submit-form').on('click', function(e) {
+	  e.preventDefault();
+	  var jqxhr = $.ajax({
+	    url: url,
+	    method: "GET",
+	    dataType: "json",
+	    data: $form.serializeObject()
+	  }).success(
+	    // do something
+	  );
+	})
+</script>
 
 </html>
